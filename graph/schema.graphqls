@@ -1,0 +1,42 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Creator {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Audio {
+  id: ID!
+  title: String!
+  description: String!
+  category: String!
+  creatorId: String!
+  creator: Creator!
+}
+
+type Query {
+  audios: [Audio!]!
+  audio(input: String!): Audio!
+  creators: [Creator!]!
+  creator(input: String!): Creator!
+}
+
+input NewAudio {
+  title: String!
+  description: String!
+  category: String!
+  CreatorId: ID!
+}
+
+type NewCreator {
+  name: String!
+  email: String!
+}
+
+type Mutation {
+  createCreator(name: String!, email: String!): Creator!
+  createAudio(input: NewAudio!): Audio!
+}
